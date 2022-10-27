@@ -69,5 +69,49 @@ fn main() {
     let b = a.expect("None");
     println!("expect {:?}", b); // expect 2
 
+    // Возвращает None если self None или результат функции не истина.
+    fn is_even(n: &i32) -> bool {
+        n % 2 == 0
+    }
+    let a = Some(4);
+    println!("filter {:?}", a.filter(is_even)); // filter Some(4)
+
+    // Убирает один вложенный Some.
+    let a = Some(Some(2));
+    println!("flatten {:?}", a.flatten()); // flatten Some(2)
+
+    // Заменить или вернуть значение если оно None.
+    let mut a = None;
+    a.get_or_insert(7);
+    println!("get_or_insert {:?}", a); // flatten Some(2)
+
+    // Заменить или вернуть значение если оно None вычисленное в функции.
+    let mut a = None;
+    a.get_or_insert_with(|| 5);
+    println!("get_or_insert_with {:?}", a); // get_or_insert_with Some(5)
+
+    // Заменить и вернуть значение.
+    let mut a: Option<i32> = Some(4);
+    let _ = a.insert(5);
+    println!("insert {:?}", a); // insert Some(5)
+
+    // Итератор. 1 значение при Some, пустой при None.
+    let a = Some(2);
+    for i in a.iter() {
+        println!("iter {:?}", i); // iter 2
+    }
+
+    // Итератор изменяемого Option. 1 значение при Some, пустой при None.
+    let mut a = Some(2);
+    for i in a.iter_mut() {
+        *i = 5;
+        println!("iter {:?}", i); // iter 2
+    }
+
+    // Применяет функцию к содержащемуся значению, возвращает результат.
+    let a = Some(2);
+    let b = a.map(|x| x + 1);
+    println!("map {:?}", b); // map Some(3)
+
 
 }
