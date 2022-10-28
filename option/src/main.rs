@@ -113,5 +113,66 @@ fn main() {
     let b = a.map(|x| x + 1);
     println!("map {:?}", b); // map Some(3)
 
+    // Возвращает предоставленное значение по умолчанию (если None) или применяет функцию к содержащемуся значению (если Some).
+    let a: Option<i32> = None;
+    let b = a.map_or(42, |x| x + 1);
+    println!("map_or {:?}", b); // map_or 42
+
+    // Применяет разные функции к None и Some.
+    let a: Option<i32> = None;
+    let b = a.map_or_else(|| 43, |x| x + 1);
+    println!("map_or_else {:?}", b); // map_or_else 43
+
+    // Переобразует в Result, для Err значение в параметре.
+    let a: Option<i32> = None;
+    println!("ok_or {:?}", a.ok_or(5)); // ok_or Err(5)
+
+    // Для None возвращается результат функции.
+    let a: Option<i32> = None;
+    println!("or_else {:?}", a.or_else(|| Some(0))); // or_else Some(0)
+
+    // Заменяет Some на новое значение, старое возвращается.
+    let mut a = Some(2);
+    let b = a.replace(3);
+    println!("replace {:?} {:?}", a, b); // replace Some(3) Some(2)
+
+    // Значение Some возвращается, текущее замещается None.
+    let mut a = Some(2);
+    let b = a.take();
+    println!("take {:?} {:?}", a, b); // take None Some(2)
+
+    // Меняет местами обертки Option и Result. Option(Result) -> Result(Option).
+    let a: Option<Result<i32, &str>> = Some(Ok(5));
+    println!("transpose {:?}", a.transpose()); // transpose Ok(Some(5))
+
+    // Возвращает содержащееся значение в Some, или паника.
+    let a = Some(2);
+    println!("unwrap {:?}", a.unwrap()); // unwrap 2
+
+    // Возвращает содержащееся значение в Some или предоставленное значение по умолчанию.
+    let a = None;
+    println!("unwrap_or {:?}", a.unwrap_or(3)); // unwrap_or 3
+
+    // Возвращает содержащееся значение в Some, или значение по умолчанию для данного типа.
+    let a:Option<i32> = None;
+    println!("unwrap_or_default {:?}", a.unwrap_or_default()); // unwrap_or_default 0
+
+    // Возвращает содержащееся значение в Some или предоставленное значение по умолчанию работы функции.
+    let a:Option<i32> = None;
+    println!("unwrap_or_else {:?}", a.unwrap_or_else(|| 42)); // unwrap_or_else 42
+
+    // Возвращает содержащееся значение OK, потребляющее собственное значение, без проверки того, что значение не является ошибкой.
+    let a:Option<i32> = Some(2);
+    println!("unwrap_unchecked {:?}", unsafe { a.unwrap_unchecked() }); // unwrap_unchecked 2
+
+    // Как побитовое XOR. Если оба значения Some или None, то возвращает None, иначе Some.
+    let a:Option<i32> = Some(2);
+    let b:Option<i32> = None;
+    println!("xor {:?}", a.xor(b)); // xor Some(2)
+
+    // Если оба параметра Some, то возвращает кортеж из этих значений в Some, иначе Null.
+    let a:Option<i32> = Some(2);
+    let b:Option<i32> = Some(3);
+    println!("zip {:?}", a.zip(b)); // zip Some((2, 3))
 
 }
