@@ -33,23 +33,23 @@ fn main() {
     let b = a.as_deref();
     println!("as_deref {:?}", b); // as_deref Some("Ок")
 
-    // Преобразует &mut Option<T> в Option<&mut T>
+    // Преобразует &mut Option<T> в Option<&mut T>.
     let mut a: Option<&str> = Some("Ок");
     let b = a.as_mut();
     println!("as_mut {:?}", b); // as_mut Some("Ок")
 
-    // Преобразует Pin<&mut Option<T>> в Option<Pin<&mut T>>
+    // Преобразует Pin<&mut Option<T>> в Option<Pin<&mut T>>.
     let mut a: Option<&str> = Some("Ок");
     let b = Pin::new(&mut a);
     let result = b.as_pin_mut();
     println!("as_pin_mut {:?}", result); // as_pin_mut Some("Ок")
 
-    // Преобразует Pin<&Option<T>> в Option<Pin<&T>>
+    // Преобразует Pin<&Option<T>> в Option<Pin<&T>>.
     let a = Pin::new(&Some("Ок"));
     let result = a.as_pin_ref();
     println!("as_pin_ref {:?}", result); // as_pin_ref Some("Ок")
 
-    // Преобразует &Option<T> в Option<&T>
+    // Преобразует &Option<T> в Option<&T>.
     let a: Option<&str> = Some("Ок");
     let b = &a.as_ref();
     println!("as_ref {:?}", b); // as_ref Some("Ок")
@@ -83,7 +83,7 @@ fn main() {
     // Заменить или вернуть значение если оно None.
     let mut a = None;
     a.get_or_insert(7);
-    println!("get_or_insert {:?}", a); // flatten Some(2)
+    println!("get_or_insert {:?}", a); // get_or_insert Some(7)
 
     // Заменить или вернуть значение если оно None вычисленное в функции.
     let mut a = None;
@@ -161,7 +161,7 @@ fn main() {
     let a:Option<i32> = None;
     println!("unwrap_or_else {:?}", a.unwrap_or_else(|| 42)); // unwrap_or_else 42
 
-    // Возвращает содержащееся значение OK, потребляющее собственное значение, без проверки того, что значение не является ошибкой.
+    // Возвращает содержащееся значение Some, потребляющее собственное значение, без проверки того, что значение не является ошибкой.
     let a:Option<i32> = Some(2);
     println!("unwrap_unchecked {:?}", unsafe { a.unwrap_unchecked() }); // unwrap_unchecked 2
 
