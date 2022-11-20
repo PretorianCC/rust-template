@@ -10,7 +10,7 @@ fn main() {
         println!("{:?}", path);
     }
 
-    // Возвращает методанные к файла или каталога.
+    // Возвращает метаданные файла или каталога.
     let entries = fs::read_dir("..").unwrap();
     println!("metadata");
     for entry in entries {
@@ -28,10 +28,10 @@ fn main() {
 
     // Возвращает имя файла или каталога.
     let entries = fs::read_dir("..").unwrap();
-    println!("file_type");
+    println!("file_name");
     for entry in entries {
-        let file_type = entry.unwrap().file_name();
-        println!("{:?}", file_type); // file_type "Cargo.lock" ...
+        let file_name = entry.unwrap().file_name();
+        println!("{:?}", file_name); // file_name "Cargo.lock" ...
     }
 
 }
