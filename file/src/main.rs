@@ -20,7 +20,7 @@ fn main() {
     let metadata = f.metadata();
     println!("metadata {:?}", metadata); // metadata Ok(Metadata {...}) ...
 
-    // Усекает или расширяет базовый файл, обновляя его размер. Все промежуточные данные будут заполнены 0.
+    // Усекает или расширяет файл, обновляя его размер. Все промежуточные данные будут заполнены 0.
     let f = File::create("1.tmp").unwrap();
     let len = f.set_len(10);
     println!("set_len {:?}", len); // set_len Ok(())
@@ -47,6 +47,6 @@ fn main() {
     // Создает новый экземпляр File, который использует тот же самый базовый дескриптор файла, что и существующий экземпляр File.
     let f = File::create("1.tmp").unwrap();
     let file_copy = f.try_clone();
-    println!("file_copy {:?}", file_copy); // file_copy Ok(File { handle: 0xbc, path: "\\\\?\\C:\\Projects\\Rust\\rust-template\\file\\src\\1.tmp" })
+    println!("try_clone {:?}", file_copy); // try_clone Ok(File { handle: 0xbc, path: "\\\\?\\C:\\Projects\\Rust\\rust-template\\file\\src\\1.tmp" })
 
 }
