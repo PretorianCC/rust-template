@@ -10,17 +10,17 @@ fn main() {
     let value = Box::new(5);
     let ptr = Box::into_raw(value);
     let x = unsafe {Box::from_raw(ptr)};
-    println!("from_raw {:?}", x); // from_raw 5
+    println!("Box::from_raw {:?}", x); // Box::from_raw 5
 
     // Закрепляет значение в куче и гарантирует его не перемещение.
     let value = Box::new(5);
     let result = Box::into_pin(value);
-    println!("into_pin {:?}", result); // into_pin 5
+    println!("Box::into_pin {:?}", result); // Box::into_pin 5
 
-    // Получает указатель на значение в куче.
+    // Получает ссылку на указатель в куче.
     let value = Box::new(5);
     let ptr = Box::into_raw(value);
-    println!("into_raw {:?}", ptr); // ptr 0x280641054d0
+    println!("Box::into_raw {:?}", ptr); // Box::into_raw 0x280641054d0
 
     // Создает не перемещаемый указатель на значение в куче.
     let value = Box::pin(5);
