@@ -16,7 +16,7 @@ fn main() {
     let vec_slice = vec.as_mut_slice();
     println!("as_mut_slice {:?}", vec_slice); // as_mut_slice [1, 2, 3]
 
-    // Возвращает необработанный не изменяемый указатель в буфер вектора.
+    // Возвращает необработанный не изменяемый указатель на буфер вектора.
     let vec = vec![1, 2, 3];
     let vec_ptr = vec.as_ptr();
     println!("as_ptr {:?}", vec_ptr); // as_ptr 0x255e4e2df20
@@ -130,18 +130,18 @@ fn main() {
     vec.reserve_exact(10);
     println!("reserve_exact {}", vec.capacity()); // reserve_exact 13
 
-    // Изменяет размер вектора увеличивая до указанного размера, инициализируя новые значения указанным значением.
+    // Изменяет размер вектора увеличивая до указанной длины, инициализируя новые значения указанным значением.
     let mut vec = vec![1, 2, 3];
     vec.resize(5, 0);
     println!("resize {:?}", vec); // resize [1, 2, 3, 0, 0]
 
-    // Изменяет размер вектора увеличивая до указанного размера, инициализируя новые значения из функции.
+    // Изменяет размер вектора увеличивая до указанной длины, инициализируя новые значения из функции.
     let mut vec = vec![1, 2, 3];
     let mut p = 1;
     vec.resize_with(5, || { p *= 2; p });
     println!("resize_with {:?}", vec); // resize_with [1, 2, 3, 2, 4]
 
-    // Сохраняет элементы которые true после обработки функцией.
+    // Сохраняет в векторе элементы которые true после обработки функцией.
     let mut vec = vec![1, 2, 3, 4, 5, 6];
     vec.retain(|&x| x % 2 == 0);
     println!("retain {:?}", vec); // retain [2, 4, 6]
@@ -212,7 +212,7 @@ fn main() {
     vec.try_reserve(10).unwrap();
     println!("try_reserve {}", vec.capacity()); // try_reserve 10
 
-    // Пытается зарезервировать минимальную емкость для дополнительных элементов.
+    // Пытается зарезервировать емкость для дополнительных элементов.
     let mut vec: Vec<i32> = Vec::new();
     vec.try_reserve_exact(10).unwrap();
     println!("try_reserve_exact {}", vec.capacity()); // try_reserve_exact 10
