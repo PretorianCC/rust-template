@@ -1,5 +1,7 @@
 // Срез строки.
 
+use std::net::ToSocketAddrs;
+
 fn main() {
     
     // Преобразует строковый срез из UTF-8 в байтовый. 
@@ -21,7 +23,7 @@ fn main() {
     let ptr = "first".as_ptr();
     println!("as_ptr {:?}", ptr); // as_ptr 0x7ff7e229f450
 
-    // Итератор по байтам строкового фрагмента.
+    // Итератор по байтам строкового среза.
     let bytes = "bors".bytes();
     print!("bytes ");
     for byte in bytes {
@@ -135,13 +137,13 @@ fn main() {
     }
     println!(); // lines hello world
 
-    // Переводит английские символы среза в нижний регистр.
+    // Переводит ascii символы среза в нижний регистр.
     let mut string = String::from("HELLO world!");
     let (first, _) = string.split_at_mut(8);
     first.make_ascii_lowercase();
     println!("make_ascii_lowercase {:?}", first); // make_ascii_lowercase "hello wo"
 
-    // Переводит английские символы среза в верхний регистр.
+    // Переводит ascii символы среза в верхний регистр.
     let mut string = String::from("hello world!");
     let (first, _) = string.split_at_mut(8);
     first.make_ascii_uppercase();
@@ -222,7 +224,7 @@ fn main() {
     let vector: Vec<&str> = "Mary had a little lamb".split(' ').collect();
     println!("split {:?}", vector); // split ["Mary", "had", "a", "little", "lamb"]
 
-    // Разделяет строковой срез пробелом и возращает итератор. Пустые подстроки не войдут в итератор.
+    // Разделяет строковой срез по пробельным ascii символам и возращает итератор. Пустые подстроки не войдут в итератор.
     let vector: Vec<&str> = "Mary had a little  lamb".split_ascii_whitespace().collect();
     println!("split_ascii_whitespace {:?}", vector); // split_ascii_whitespace ["Mary", "had", "a", "little", "lamb"]
 
@@ -247,7 +249,7 @@ fn main() {
     let typle: Vec<&str> = "cfg=foo=bar=".split_terminator('=').collect();
     println!("split_terminator {:?}", typle); // split_terminator ["cfg ", "foo", "bar"]
 
-    // Разделяет строковой срез пробелом и возращает итератор. Пустые подстроки не войдут в итератор.
+    // Разделяет строковой срез по пробельным символам и возращает итератор. Пустые подстроки не войдут в итератор.
     let vector: Vec<&str> = "Mary had a little  lamb".split_whitespace().collect();
     println!("split_whitespace {:?}", vector); // split_whitespace ["Mary", "had", "a", "little", "lamb"]
 
@@ -306,5 +308,58 @@ fn main() {
     // Возвращает срез строки с удаленным шаблоном в начале.
     let str = "123abc";
     println!("trim_start_matches {:?}", str.trim_start_matches(char::is_numeric)); // trim_start_matches "abc"
+
+    // Сравнить строки на равенство.
+    let str1 = "abc";
+    let str2 = "123";
+    println!("== {:?}", str1 == str2); // == false
+
+    // Сравнить строки на не равенство.
+    let str1 = "abc";
+    let str2 = "123";
+    println!("!= {:?}", str1 != str2); // != true
+
+    // Сравнить строки на меньше.
+    let str1 = "abc";
+    let str2 = "123";
+    println!("< {:?}", str1 < str2); // < false
+
+    // Сравнить строки на больше.
+    let str1 = "abc";
+    let str2 = "123";
+    println!("> {:?}", str1 > str2); // > true
+
+    //  Сравнить строки на меньше или равно.
+    let str1 = "abc";
+    let str2 = "123";
+    println!("<= {:?}", str1 <= str2); // <= false
+
+    //  Сравнить строки на больше или равно.
+    let str1 = "abc";
+    let str2 = "123";
+    println!(">= {:?}", str1 >= str2); // >= true
+
+    // Получить новый срез по диапазону.
+    let str = "abc123";
+    println!("[n1..ns] {:?}", &str[1..4]); // [n1..ns] "bc1"
+
+    // Клонирует срез.
+    let str = "abc123";
+    println!("to_owned {:?}", str.to_owned()); // to_owned "abc123"
+
+    // Клонирует срез в строку.
+    let str = "abc123";
+    let mut string = String::new();
+    str.clone_into(&mut string);
+    println!("clone_into {:?}", string); // clone_into "abc123"
+
+    // Срез в сокет адрес.
+    let str = "127.0.0.1:80";
+    println!("to_socket_addrs {:?}", str.to_socket_addrs()); // to_socket_addrs Ok(IntoIter([127.0.0.1:80]))
+
+    // Преобразовать срез в строку.
+    let str = "abc123";
+    let string = str.to_string();
+    println!("to_string {:?}", string); // to_string "abc123"
 
 }
