@@ -362,4 +362,34 @@ fn main() {
     let string = str.to_string();
     println!("to_string {:?}", string); // to_string "abc123"
 
+    // Возвращает минимальный по сравнению срез.
+    let str1 = "abc";
+    let str2 = "123";
+    println!("min {:?}", str1.min(str2)); // min "123"
+
+    // Возвращает максимальный по сравнению срез.
+    let str1 = "abc";
+    let str2 = "123";
+    println!("max {:?}", str1.max(str2)); // max "abc"
+
+    // Возвращает self если он входит в диапазон min-max, иначе возвращает минимальное или максимальное. Паника если min > max.
+    let str = "abc";
+    println!("clamp {:?}", str.clamp("aca", "adc")); // clamp "aca"
+
+    // Клонирует срез.
+    let str1 = "abc";
+    let str2 = str1.clone();
+    println!("clone {:?}", str2); // clone "abc"
+
+   // Клонирует срез в изменяемый срез.
+   let str1 = "abc";
+   let mut str2 = "";
+   str2.clone_from(&str1);
+   println!("clone_from {:?}", str2); // clone_from "abc"
+
+   // Сравнивает строки.
+   let str1 = "abc";
+   let str2 = "123";
+   println!("cmp {:?}", str1.cmp(str2)); // cmp Greater
+
 }
