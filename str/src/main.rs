@@ -329,12 +329,12 @@ fn main() {
     let str2 = "123";
     println!("> {:?}", str1 > str2); // > true
 
-    //  Сравнить строки на меньше или равно.
+    // Сравнить строки на меньше или равно.
     let str1 = "abc";
     let str2 = "123";
     println!("<= {:?}", str1 <= str2); // <= false
 
-    //  Сравнить строки на больше или равно.
+    // Сравнить строки на больше или равно.
     let str1 = "abc";
     let str2 = "123";
     println!(">= {:?}", str1 >= str2); // >= true
@@ -343,7 +343,7 @@ fn main() {
     let str = "abc123";
     println!("[n1..ns] {:?}", &str[1..4]); // [n1..ns] "bc1"
 
-    // Клонирует срез.
+    // Клонирует срез возвращая новую строку.
     let str = "abc123";
     println!("to_owned {:?}", str.to_owned()); // to_owned "abc123"
 
@@ -376,7 +376,7 @@ fn main() {
     let str = "abc";
     println!("clamp {:?}", str.clamp("aca", "adc")); // clamp "aca"
 
-    // Клонирует срез.
+    // Клонирует срез в Box.
     let str1 = "abc";
     let str2 = str1.clone();
     println!("clone {:?}", str2); // clone "abc"
@@ -387,9 +387,13 @@ fn main() {
    str2.clone_from(&str1);
    println!("clone_from {:?}", str2); // clone_from "abc"
 
-   // Сравнивает строки.
+   // Сравнивает срезы строк.
    let str1 = "abc";
    let str2 = "123";
    println!("cmp {:?}", str1.cmp(str2)); // cmp Greater
+
+   // Создает срез по умолчанию, изменяемый или не изменяемый.
+   let str: &str = Default::default();
+   println!("Default::default {:?}", str); // Default::default ""
 
 }
