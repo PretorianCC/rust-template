@@ -44,7 +44,7 @@ fn main() {
     let duration = Duration::new(2, 0).checked_div(2);
     println!("checked_div {:?}", duration); // checked_div Some(1s)
 
-    // Умножение.
+    // Произведение чисел.
     let duration = Duration::new(0, 500_000_001).checked_mul(2);
     println!("checked_mul {:?}", duration); // checked_mul Some(1.000000002s)
 
@@ -60,43 +60,43 @@ fn main() {
     let duration = Duration::new(2, 700_000_000);
     println!("div_f64 {:?}", duration.div_f64(3.14)); // div_f64 859.872611ms
 
-    // Продолжительность времени из указанного числа микросекунд.
+    // Период времени из количества микросекунд.
     let duration = Duration::from_micros(1_000_002);
-    println!("from_micros {:?}", duration); // from_micros 1.000002s
+    println!("Duration::from_micros {:?}", duration); // Duration::from_micros 1.000002s
 
-    // Продолжительность времени из указанного числа миллисекунд.
+    // Период времени из количества миллисекунд.
     let duration = Duration::from_millis(2569);
-    println!("from_millis {:?}", duration); // from_millis 2.569s
+    println!("Duration::from_millis {:?}", duration); // Duration::from_millis 2.569s
 
-    // Продолжительность времени из указанного числа наносекунд.
+    // Период времени из количества наносекунд.
     let duration = Duration::from_nanos(1_000_000_123);
-    println!("from_nanos {:?}", duration); // from_nanos 1.000000123s
+    println!("Duration::from_nanos {:?}", duration); // Duration::from_nanos 1.000000123s
    
-    // Продолжительность времени из указанного числа секунд.
+    // Период времени из количества секунд.
     let duration = Duration::from_secs(5);
-    println!("from_secs {:?}", duration); // from_secs 5s
+    println!("Duration::from_secs {:?}", duration); // Duration::from_secs 5s
 
-    // Продолжительность времени из указанного числа секунд.
+    // Период времени из количества секунд.
     let duration = Duration::from_secs_f32(3e10);
-    println!("from_secs_f32 {:?}", duration); // from_secs_f32 30000001024s
+    println!("Duration::from_secs_f32 {:?}", duration); // Duration::from_secs_f32 30000001024s
 
-    // Продолжительность времени из указанного числа секунд.
+    // Период времени из количества секунд.
     let duration = Duration::from_secs_f64(3e10);
-    println!("from_secs_f64 {:?}", duration); // from_secs_f64 30000000000s
+    println!("Duration::from_secs_f64 {:?}", duration); // Duration::from_secs_f64 30000000000s
 
-    // true, если продолжительность 0.
+    // true, если период 0.
     let duration = Duration::from_secs(0);
     println!("is_zero {:?}", duration.is_zero()); // is_zero true
 
-    // Умножение.
+    // Произведение чисел.
     let duration = Duration::new(2, 700_000_000);
     println!("mul_f32 {:?}", duration.mul_f32(3.14)); // mul_f32 8.478000641s
 
-    // Умножение.
+    // Произведение чисел.
     let duration = Duration::new(2, 700_000_000);
     println!("mul_f64 {:?}", duration.mul_f64(3.14)); // mul_f64 8.478s
 
-    // Новая продолжительность времени.
+    // Новый период времени.
     let duration = Duration::new(2, 700_000_000);
     println!("Duration::new {:?}", duration); // Duration::new 2.7s
 
@@ -104,7 +104,7 @@ fn main() {
     let duration = Duration::new(2, 700_000_000);
     println!("saturating_add {:?}", duration.saturating_add(Duration::new(0, 1))); // saturating_add 2.700000001s
 
-    // Умножение, при переполнении Duration::MAX.
+    // Произведение чисел, при переполнении Duration::MAX.
     let duration = Duration::new(2, 700_000_000);
     println!("saturating_mul {:?}", duration.saturating_mul(2)); // saturating_mul 5.4s
 
@@ -159,7 +159,7 @@ fn main() {
     duration.hash(&mut hasher);
     println!("hash {:?}", hasher.finish()); // hash 13159505960806080403
 
-    // Умножение.
+    // Произведение чисел.
     let duration = Duration::new(2, 0);
     println!("* {:?}", duration * 2); // * 4s
 
