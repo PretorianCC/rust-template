@@ -148,6 +148,10 @@ fn main() {
     let duration: Duration = Default::default();
     println!("Default::default {:?}", duration); // Default::default 0ns
 
+    // Деление.
+    let duration = Duration::new(2, 0);
+    println!("/ {:?}", duration / 2); // / 1s
+
     // Деление с присваеванием.
     let mut duration = Duration::new(2, 0);
     duration /= 2;
@@ -168,7 +172,7 @@ fn main() {
     duration *= 2;
     println!("*= {:?}", duration); // *= 4s
 
-    // Сравнение.
+    // Сравнение на равенство.
     let duration1 = Duration::new(2, 0);
     let duration2 = Duration::new(2, 0);
     println!("cmp {:?}", duration1.cmp(&duration2)); // cmp Equal
@@ -197,6 +201,11 @@ fn main() {
     let duration = Duration::new(0, 0);
     println!("!= {:?}", duration != duration); // != false
 
+    // Сравнение на больше меньше.
+    let duration1 = Duration::new(2, 0);
+    let duration2 = Duration::new(2, 0);
+    println!("partial_cmp {:?}", duration1.partial_cmp(&duration2)); // partial_cmp Some(Equal)
+
     // Меньше.
     let duration = Duration::new(0, 0);
     println!("< {:?}", duration < duration); // < false
@@ -205,11 +214,11 @@ fn main() {
     let duration = Duration::new(0, 0);
     println!("<= {:?}", duration <= duration); // <= true
 
-    // Меньше.
+    // Больше.
     let duration = Duration::new(0, 0);
     println!("> {:?}", duration > duration); // > false
 
-    // Меньше или равно.
+    // Больше или равно.
     let duration = Duration::new(0, 0);
     println!(">= {:?}", duration >= duration); // >= true
 
