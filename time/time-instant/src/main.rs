@@ -10,7 +10,7 @@ fn main() {
     let now = Instant::now();
     println!("Instant::now {:?}", now); // Instant::now Instant { t: 890560.5731299s }
 
-    // Прошедшее время от текущего момента.
+    // Прошедшее время от инициализации текущего момента.
     let now = Instant::now();
     println!("elapsed {:?}", now.elapsed()); // elapsed 200ns
 
@@ -42,7 +42,7 @@ fn main() {
     let new_now = Instant::now();
     println!("saturating_duration_since {:?}", new_now.saturating_duration_since(now)); // saturating_duration_since 1.0033914s
 
-    // Сумма текущиго момента и интервала времени. Паника при переполнении.
+    // Сумма текущего момента и интервала времени. Паника при переполнении.
     let now = Instant::now();
     let duration = Duration::from_secs(3);
     println!("+ {:?}", now + duration); // + Instant { t: 971572.4393983s }
@@ -127,7 +127,7 @@ fn main() {
     let now2 = Instant::now();
     println!(">= {:?}", now1 >= now2); // >= false
 
-    // Отнять от момента период времени
+    // Отнять от момента период времени.
     let now = Instant::now();
     let duration = Duration::new(1, 0);
     println!("- {:?}", now - duration); // - Instant { t: 995708.3398491s }
@@ -137,7 +137,7 @@ fn main() {
     let now2 = Instant::now();
     println!("- {:?}", now2 - now1); // - 100ns
 
-    // Уменьшить момент на период времени
+    // Уменьшить момент на период времени.
     let mut now = Instant::now();
     let duration = Duration::new(1, 0);
     now -= duration;
